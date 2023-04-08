@@ -28,15 +28,15 @@ class ManagerConnection(
         val res = this::class.java.classLoader.getResource("pack.json")!!
         pack = Json.decodeFromStream(res.openStream())
 
-        val _states = mutableListOf(Game.BeforeStart, Game.StartGame, Game.Rules)
+        val _states = mutableListOf(Game.BeforeStart, Game.StartGame, Game.Introduction, Game.Rules)
 
         for ((rIndex, round) in pack.rounds.withIndex()) {
             _states.add(Game.NewRound(rIndex + 1))
-            val roundName = round.name
+            val roundName = "Раунд ${rIndex+1}\n${round.name}"
             val total = round.questions.size
 
             for ((qIndex, question) in round.questions.withIndex()) {
-                val num = qIndex + 1
+                val num = qIndex
                 _states.add(Game.QuestionGame(
                     question.toQuestionSend(QuestionState.INVISIBLE, roundName, num, total)
                 ))

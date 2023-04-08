@@ -6,7 +6,7 @@ import io.ktor.server.websocket.*
 
 class GameStateConnection: Connection<GameState>() {
 
-    private var gameState = GameState.SPLASH_SCREEN
+    private var gameState = GameState.BEFORE_START
 
     override fun String.toType(): GameState = this.toGameState()
 

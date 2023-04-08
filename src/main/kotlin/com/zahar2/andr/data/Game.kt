@@ -20,6 +20,10 @@ sealed class Game {
         override suspend fun invoke() = change(GameState.SPLASH_SCREEN, QuestionSend.emptyQuestionSend(), Video.START)
     }
 
+    object Introduction : Game() {
+        override suspend fun invoke() = change(GameState.SPLASH_SCREEN, QuestionSend.emptyQuestionSend(), Video.NONE)
+    }
+
     object Rules : Game() {
         override suspend fun invoke() = change(GameState.RULES, QuestionSend.emptyQuestionSend(), Video.NONE)
     }
